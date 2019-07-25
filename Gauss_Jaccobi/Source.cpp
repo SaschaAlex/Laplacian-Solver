@@ -23,6 +23,7 @@ SOFTWARE.*/
 
 #include <iostream>
 #include <fstream>
+#include <cmath>
 
 void show_matrix(float *  matrix, int r) {
 	for (int i = 0; i < r; i++) {
@@ -80,10 +81,15 @@ float * laplacian_matrix(int size ,int N) {
 
 }
 
-float * jacobi(float * matrix, float * vector, int r, int round) {
+
+float * jacobi(float * matrix, float * vector, int r,float precision) {
 	float * x = new float[r];
 	float * x_holder = new float[r];
-	for (int k = 0; k < round; k++) {
+	bool convergence = true;
+	int test = 0;
+	while (convergence == true) {
+		test++;
+		convergence = true; 
 		for (int n = 0; n < r; n++) {
 			x_holder[n] = vector[n] / (*(matrix + n * r + n));
 			for (int i = 0; i < r; i++) {
@@ -93,31 +99,38 @@ float * jacobi(float * matrix, float * vector, int r, int round) {
 			}
 		}
 		for (int l = 0; l < r; l++) {
+			if(l % r == 0 )
+				std::cout << "Error: " << fabs(x[0] - x_holder[0]) << std::endl;
+			if (fabs(x[l]-x_holder[l]) < precision && x[l] != x_holder[l]) {
+				convergence = false;
+			}
 			x[l] = x_holder[l] + 0;
 		}
-		std::cout << k << std::endl;
 	}
 	return x;
 }
 
-
-
 int main() {
 
-	int size = 40;
-	float * laplacian = (float*) malloc(size *size *size *size * sizeof(float));
+	//exemple 
+	int size = 100; // For a square grid [100x100]
+	float * laplacian = (float*) malloc(size *size *size *size * sizeof(float)); 
 
-	laplacian = laplacian_matrix(size*size, size);
+	laplacian = laplacian_matrix(size*size, 5);
+
+	//creating inital value
 	float * vector = (float*)malloc(size *size  * sizeof(float));
 	for (int i = 0; i < size*size; i++) {
 		vector[i] = 0;
 	}
 	for (int i = 0; i < size; i++) {
-			vector[i] = -1*10;
+			vector[i] = -1;
+			vector[size - 1 + i] = -1;
 	}
+	
 
 	float * test_laplacian = (float*)malloc(size *size * sizeof(float));
-	test_laplacian = jacobi((float*)laplacian, vector, size*size, 100000);
+	test_laplacian = jacobi((float*)laplacian, vector, size*size,1e-4);
 
 	//Export Data to a csv file
 	std::ofstream myfile;
