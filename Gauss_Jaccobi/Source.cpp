@@ -24,96 +24,15 @@ SOFTWARE.*/
 #include <iostream>
 #include <fstream>
 #include <cmath>
-
-void show_matrix(float *  matrix, int r) {
-	for (int i = 0; i < r; i++) {
-		for (int j = 0; j < r; j++) {
-			if (j == 0) {
-				std::cout << "[" << *(matrix + i * r + j);
-
-			}
-			else if (j == r - 1)
-			{
-				std::cout << "," << *(matrix + i * r + j) << "]";
-			}
-			else
-			{
-				std::cout << "," << *(matrix + i * r + j);
-			}
-
-		}
-		std::cout << std::endl;
-	}
-}
-
-void show_vector(float * vector, int r) {
-	for (int i = 0; i < r; i++) {
-		std::cout << "[" << vector[i] << "]" << std::endl;
-	}
-
-}
-
-float * laplacian_matrix(int size ,int N) {
-	float * laplacian;
-	laplacian = (float*)malloc(size *size *sizeof(float));
-	for (int i = 0; i < size*size; i++) {
-		laplacian[i] = 0;
-	}
-	for (int i = 0; i < size; i++) {
-		if (((i + 1) * size + i) < size * size) {
-			laplacian[(i + 1) * size + i] = 1;
-		}
-		if (0 <= ((i - 1) * size + i)) {
-			laplacian[(i - 1) * size + i] = 1;
-		}
-
-		laplacian[i * size + i] = -4;
-
-		if (((i + N) * size + i) < size * size) {
-			laplacian[(i + N) * size + i] = 1;
-		}
-
-		if (0 <= ((i - N) * size + i)) {
-			laplacian[(i - N) * size + i] = 1;
-		}
-	}
-	return laplacian;
-
-}
+#include <ctime>
+#include "ult.h"
 
 
-float * jacobi(float * matrix, float * vector, int r,float precision) {
-	float * x = new float[r];
-	float * x_holder = new float[r];
-	bool convergence = true;
-	int test = 0;
-	while (convergence == true) {
-		test++;
-		convergence = true; 
-		for (int n = 0; n < r; n++) {
-			x_holder[n] = vector[n] / (*(matrix + n * r + n));
-			for (int i = 0; i < r; i++) {
-				if (n != i) {
-					x_holder[n] -= (*(matrix + n * r + i)*x[i]) / (*(matrix + n * r + n));
-				}
-			}
-		}
-		for (int l = 0; l < r; l++) {
-			if(l % r == 0 )
-				std::cout << "Error: " << fabs(x[0] - x_holder[0]) << std::endl;
-			if (fabs(x[l]-x_holder[l]) < precision && x[l] != x_holder[l]) {
-				convergence = false;
-			}
-			x[l] = x_holder[l] + 0;
-		}
-	}
-	return x;
-}
 
 int main() {
 
 	//exemple 
-	int size = 100; // For a square grid [100x100]
+	int size = 40; // For a square grid [size * size]
 	float * laplacian = (float*) malloc(size *size *size *size * sizeof(float)); 
 
 	laplacian = laplacian_matrix(size*size, 5);
@@ -128,13 +47,18 @@ int main() {
 			vector[size - 1 + i] = -1;
 	}
 	
-
 	float * test_laplacian = (float*)malloc(size *size * sizeof(float));
-	test_laplacian = jacobi((float*)laplacian, vector, size*size,1e-4);
-
+	clock_t begin = clock();
+	//test_laplacian = jacobi((float*)laplacian, vector, size*size,1e-4F);
+	test_laplacian = sidel((float*)laplacian, vector, size*size, 1e-4F);
+	clock_t end = clock();
+	double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
+	std::cout << "time: "<<elapsed_secs << std::endl;
 	//Export Data to a csv file
 	std::ofstream myfile;
 	myfile.open("data.csv");
+
+
 	for (int i = 0; i < size ; i++)
 	{
 		myfile << test_laplacian[i*size + 0];
@@ -146,7 +70,7 @@ int main() {
 		myfile << std::endl;
 	}
 	myfile.close();
-
+	
 
 	free(test_laplacian);
 	free(vector);
