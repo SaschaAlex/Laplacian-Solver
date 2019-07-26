@@ -1,10 +1,10 @@
 #include <cmath>
 #include <iostream>
-float * sidel(float * matrix, float * vector, int r, float precision) {
+float * sor(float * matrix, float * vector, int r, float precision) {
 	float * x = new float[r];
 	float * x_holder = new float[r];
 	bool convergence = true;
-	while(convergence == true){
+	while (convergence == true) {
 		convergence = true;
 
 		//actual solver
@@ -22,7 +22,7 @@ float * sidel(float * matrix, float * vector, int r, float precision) {
 			if (fabs(x[n] - x_holder[n]) < precision && x[n] != x_holder[n]) {
 				convergence = false;
 			}
-			x[n] = x_holder[n];
+			x[n] = 1.73*x_holder[n]-0.73*x[n];
 		}
 
 

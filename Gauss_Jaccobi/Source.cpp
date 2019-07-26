@@ -50,7 +50,8 @@ int main() {
 	float * test_laplacian = (float*)malloc(size *size * sizeof(float));
 	clock_t begin = clock();
 	//test_laplacian = jacobi((float*)laplacian, vector, size*size,1e-4F);
-	test_laplacian = sidel((float*)laplacian, vector, size*size, 1e-4F);
+	//test_laplacian = sidel((float*)laplacian, vector, size*size, 1e-4F);
+	test_laplacian = sor((float*)laplacian, vector, size*size, 1e-4F);
 	clock_t end = clock();
 	double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
 	std::cout << "time: "<<elapsed_secs << std::endl;
