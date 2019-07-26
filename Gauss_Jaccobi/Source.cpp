@@ -30,9 +30,9 @@ SOFTWARE.*/
 
 
 int main() {
-
-	//exemple 
-	int size = 40; // For a square grid [size * size]
+	
+	//exemple float
+	int size = 20; // For a square grid [size * size]
 	float * laplacian = (float*) malloc(size *size *size *size * sizeof(float)); 
 
 	laplacian = laplacian_matrix(size*size, 5);
@@ -48,18 +48,38 @@ int main() {
 	}
 	
 	float * test_laplacian = (float*)malloc(size *size * sizeof(float));
-	clock_t begin = clock();
+	
+
+
+	//exemple double
+	/*
+	int size = 20; // For a square grid [size * size]
+	double * laplacian = (double*)malloc(size *size *size *size * sizeof(double));
+
+	laplacian = laplacian_matrix_double(size*size, 5);
+
+	//creating inital value
+	double * vector = (double*)malloc(size *size * sizeof(double));
+	for (int i = 0; i < size*size; i++) {
+		vector[i] = 0;
+	}
+	for (int i = 0; i < size; i++) {
+		vector[i] = -1;
+		vector[size - 1 + i] = -1;
+	}
+
+	double * test_laplacian = (double*)malloc(size *size * sizeof(double));
+	test_laplacian = sor(laplacian, vector, size*size, 1e-4F);
+	*/
+
+	
+
 	//test_laplacian = jacobi((float*)laplacian, vector, size*size,1e-4F);
 	//test_laplacian = sidel((float*)laplacian, vector, size*size, 1e-4F);
 	test_laplacian = sor((float*)laplacian, vector, size*size, 1e-4F);
-	clock_t end = clock();
-	double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
-	std::cout << "time: "<<elapsed_secs << std::endl;
+
 	//Export Data to a csv file
 	std::ofstream myfile;
-	myfile.open("data.csv");
-
-
 	for (int i = 0; i < size ; i++)
 	{
 		myfile << test_laplacian[i*size + 0];
