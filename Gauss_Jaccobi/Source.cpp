@@ -32,54 +32,34 @@ SOFTWARE.*/
 int main() {
 	
 	//exemple float
-	int size = 20; // For a square grid [size * size]
+	int size = 100; // For a square grid [size * size]
 	float * laplacian = (float*) malloc(size *size *size *size * sizeof(float)); 
 
-	laplacian = laplacian_matrix(size*size, 5);
+	laplacian = laplacian2d_matrix(size*size, size);
 
-	//creating inital value
+	//creating inital value guess
 	float * vector = (float*)malloc(size *size  * sizeof(float));
 	for (int i = 0; i < size*size; i++) {
 		vector[i] = 0;
 	}
 	for (int i = 0; i < size; i++) {
-			vector[i] = -1;
-			vector[size - 1 + i] = -1;
+			//vector[i] = -10;
+			//vector[(4)*size + i] = -1;
+			vector[(size - 1)*size + i]= -10;
 	}
 	
 	float * test_laplacian = (float*)malloc(size *size * sizeof(float));
 	
-
-
-	//exemple double
-	/*
-	int size = 20; // For a square grid [size * size]
-	double * laplacian = (double*)malloc(size *size *size *size * sizeof(double));
-
-	laplacian = laplacian_matrix_double(size*size, 5);
-
-	//creating inital value
-	double * vector = (double*)malloc(size *size * sizeof(double));
-	for (int i = 0; i < size*size; i++) {
-		vector[i] = 0;
-	}
-	for (int i = 0; i < size; i++) {
-		vector[i] = -1;
-		vector[size - 1 + i] = -1;
-	}
-
-	double * test_laplacian = (double*)malloc(size *size * sizeof(double));
-	test_laplacian = sor(laplacian, vector, size*size, 1e-4F);
-	*/
-
-	
-
+	//show_vector(vector, size*size);
 	//test_laplacian = jacobi((float*)laplacian, vector, size*size,1e-4F);
 	//test_laplacian = sidel((float*)laplacian, vector, size*size, 1e-4F);
 	test_laplacian = sor((float*)laplacian, vector, size*size, 1e-4F);
+	//test_laplacian = v_cylce((float*)laplacian, vector, size*size, 1e-4F);
 
 	//Export Data to a csv file
+	
 	std::ofstream myfile;
+	myfile.open("data.csv");
 	for (int i = 0; i < size ; i++)
 	{
 		myfile << test_laplacian[i*size + 0];
@@ -91,6 +71,7 @@ int main() {
 		myfile << std::endl;
 	}
 	myfile.close();
+
 	
 
 	free(test_laplacian);

@@ -6,7 +6,6 @@ float * sor(float * matrix, float * vector, int r, float precision) {
 	bool convergence = true;
 	while (convergence == true) {
 		convergence = true;
-
 		//actual solver
 		for (int n = 0; n < r; n++) {
 			x_holder[n] = vector[n] / (*(matrix + n * r + n));
