@@ -35,13 +35,13 @@ float * laplacian1d_matrix(int size, int N) {
 
 float * laplacian2d_matrix(int size, int N) {
 	float * laplacian;
-	laplacian = (float*)malloc(size *size* sizeof(float));
+	laplacian = (float*)malloc(size *size * sizeof(float));
 	int side = (int)sqrt((double)size);
 	for (int i = 0; i < size*size; i++) {
 		laplacian[i] = 0;
 	}
 	for (int i = 0; i < size; i++) {
-		if ((((i + 1) * size + i) < size * size) && ((i % side) != 0)) {
+		if ((((i + 1) * size + i) < size * size) && (((i + 1) % side) != 0)) {
 			laplacian[(i + 1) * size + i] = 1;
 		}
 
