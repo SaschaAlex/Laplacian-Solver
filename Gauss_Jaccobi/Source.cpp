@@ -32,7 +32,7 @@ SOFTWARE.*/
 int main() {
 	
 	//exemple float
-	int size = 32; // For a square grid [size * size]
+	int size = 40; // For a square grid [size * size]
 	float * laplacian = (float*) malloc(size *size *size *size * sizeof(float)); 
 
 	laplacian = laplacian2d_matrix(size*size, size);
@@ -50,11 +50,12 @@ int main() {
 	
 	float * test_laplacian = (float*)malloc(size *size * sizeof(float));
 	
+
+	
 	//show_vector(vector, size*size);
 	//test_laplacian = jacobi((float*)laplacian, vector, size*size,1e-4F);
-	//test_laplacian = old((float*)laplacian, vector, size*size, 1e-4F);
-	test_laplacian = sidel((float*)laplacian, vector, size*size, 1e-4F);
-	//test_laplacian = sor((float*)laplacian, vector, size*size, 1e-4F);
+	//test_laplacian = sidel((float*)laplacian, vector, size*size, 1e-4F);
+	test_laplacian = sor((float*)laplacian, vector, size*size, 1e-4F);
 	//test_laplacian = v_cylce((float*)laplacian, vector, size*size, 1e-4F);
 
 	//Export Data to a csv file

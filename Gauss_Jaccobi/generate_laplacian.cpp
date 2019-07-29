@@ -66,14 +66,16 @@ float * laplacian2d_matrix(int size, int N) {
 double * laplacian2d_matrix_double(int size, int N) {
 	double * laplacian;
 	laplacian = (double*)malloc(size *size * sizeof(double));
+	int side = (int)sqrt((double)size);
 	for (int i = 0; i < size*size; i++) {
 		laplacian[i] = 0;
 	}
 	for (int i = 0; i < size; i++) {
-		if (((i + 1) * size + i) < size * size) {
+		if ((((i + 1) * size + i) < size * size) && (((i + 1) % side) != 0)) {
 			laplacian[(i + 1) * size + i] = 1;
 		}
-		if (0 <= ((i - 1) * size + i)) {
+
+		if (0 <= ((i - 1) * size + i) && ((i % side) != 0)) {
 			laplacian[(i - 1) * size + i] = 1;
 		}
 
