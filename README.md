@@ -1,4 +1,4 @@
-# Laplacian solver [![Build Status](https://travis-ci.org/SaschaAlex/Laplacian-Solver.svg?branch=master)](https://travis-ci.org/SaschaAlex/Laplacian-Solver)  [![CodeFactor](https://www.codefactor.io/repository/github/saschaalex/laplacian-solver/badge)](https://www.codefactor.io/repository/github/saschaalex/laplacian-solver)
+# Laplacian solver [![Build Status](https://travis-ci.org/SaschaAlex/Laplacian-Solver.svg?branch=master)](https://travis-ci.org/SaschaAlex/Laplacian-Solver)  [![CodeFactor](https://www.codefactor.io/repository/github/saschaalex/laplacian-solver/badge)](https://www.codefactor.io/repository/github/saschaalex/laplacian-solver) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 A simple laplacian solver using iterative methods written in c++
 
 
