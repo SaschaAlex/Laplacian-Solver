@@ -23,8 +23,6 @@ SOFTWARE.*/
 
 #include <iostream>
 #include <fstream>
-#include <cmath>
-#include <ctime>
 #include "Laplace_solver.h"
 
 
