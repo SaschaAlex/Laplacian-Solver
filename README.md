@@ -48,8 +48,6 @@ int main() {
 		vector[i] = 0;
 	}
 	for (int i = 0; i < size; i++) {
-			//vector[i] = -10;
-			//vector[(4)*size + i] = -1;
 			vector[(size - 1)*size + i]= -10;
 	}
 
