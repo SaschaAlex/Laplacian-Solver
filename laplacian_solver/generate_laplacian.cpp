@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cmath> 
+#include <cstdlib>
 
 float * laplacian1d_matrix(int size, int N) {
 	float * laplacian;

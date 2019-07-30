@@ -1,6 +1,6 @@
 #include <cmath>
 #include <iostream>
-
+#include <cstdlib>
 
 double * seidel(double * matrix, double * vector, int r, float precision) {
 	double * x = new double[r];

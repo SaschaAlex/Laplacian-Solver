@@ -1,5 +1,7 @@
 #include <cmath>
 #include <iostream>
+#include <cstdlib>
+
 float * sor(float * matrix, float * vector, int r, float precision) {
 	float * x = new float[r];
 	float * x_holder = new float[r];

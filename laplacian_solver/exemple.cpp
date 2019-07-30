@@ -23,6 +23,7 @@ SOFTWARE.*/
 
 #include <iostream>
 #include <fstream>
+#include <cstdlib>
 #include "Laplace_solver.h"
 
 
