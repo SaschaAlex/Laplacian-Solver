@@ -3,19 +3,18 @@
 float * laplacian1d_matrix(int size, int N);
 float * laplacian2d_matrix(int size, int N);
 float * jacobi(float * matrix, float * vector, int r, float precision);
-float * sidel(float * matrix, float * vector, int r, float precision);
+float * seidel(float * matrix, float * vector, int r, float precision);
 float * sor(float * matrix, float * vector, int r, float precision);
 
 //debuging
 
 float * v_cylce(float * matrix, float * vector, int r, float precision);
-float * old(float * matrix, float * vector, int r, float precision);
 
 
 // double functions 
 double * laplacian2d_matrix_double(int size,  int N);
 double * jacobi(double * matrix, double * vector, int r, float precision);
-double * sidel(double * matrix, double * vector, int r, double precision);
+double * seidel(double * matrix, double * vector, int r, float precision);
 double * sor(double * matrix, double * vector, int r, float precision);
 
 

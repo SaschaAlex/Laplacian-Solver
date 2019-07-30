@@ -25,20 +25,23 @@ SOFTWARE.*/
 #include <fstream>
 #include <cmath>
 #include <ctime>
-#include "ult.h"
+#include "Laplace_solver.h"
 
 
 
 int main() {
 	
-	//exemple float
-	int size = 40; // For a square grid [size * size]
+	//initializing variables  
+	int size = 40;  // For a square grid [size * size]
 	float * laplacian = (float*) malloc(size *size *size *size * sizeof(float)); 
+	float * vector = (float*)malloc(size *size * sizeof(float));
+	float * result = (float*)malloc(size *size * sizeof(float));
 
+
+	//Generate a 2D laplacian Matrix
 	laplacian = laplacian2d_matrix(size*size, size);
 
-	//creating inital value guess
-	float * vector = (float*)malloc(size *size  * sizeof(float));
+	//dirichlet condition boundary conditions
 	for (int i = 0; i < size*size; i++) {
 		vector[i] = 0;
 	}
@@ -47,16 +50,13 @@ int main() {
 			//vector[(4)*size + i] = -1;
 			vector[(size - 1)*size + i]= -10;
 	}
-	
-	float * test_laplacian = (float*)malloc(size *size * sizeof(float));
-	
 
-	
-	//show_vector(vector, size*size);
-	//test_laplacian = jacobi((float*)laplacian, vector, size*size,1e-4F);
-	//test_laplacian = sidel((float*)laplacian, vector, size*size, 1e-4F);
-	test_laplacian = sor((float*)laplacian, vector, size*size, 1e-4F);
-	//test_laplacian = v_cylce((float*)laplacian, vector, size*size, 1e-4F);
+
+	//solvers
+
+	//result = jacobi((float*)laplacian, vector, size*size,1e-4F);
+	//result = seidel((float*)laplacian, vector, size*size, 1e-4F);
+	result = sor((float*)laplacian, vector, size*size, 1e-4F);
 
 	//Export Data to a csv file
 	
@@ -64,19 +64,19 @@ int main() {
 	myfile.open("data.csv");
 	for (int i = 0; i < size ; i++)
 	{
-		myfile << test_laplacian[i*size + 0];
+		myfile << result[i*size + 0];
 
 		for (int j = 1; j < size; j++)
 		{
-			myfile << ", " << test_laplacian[i*size + j];
+			myfile << ", " << result[i*size + j];
 		}
 		myfile << std::endl;
 	}
 	myfile.close();
 
 	
-
-	free(test_laplacian);
+	//free memory 
+	free(result);
 	free(vector);
 	free(laplacian);
 	return 0;

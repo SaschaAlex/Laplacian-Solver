@@ -5,7 +5,6 @@ float * jacobi(float * matrix, float * vector, int r, float precision) {
 	float * x_holder = new float[r];
 	bool convergence = true;
 	while (convergence == true) {
-		//convergence = true;
 		for (int n = 0; n < r; n++) {
 			x_holder[n] = vector[n] / (*(matrix + n * r + n));
 			for (int i = 0; i < r; i++) {

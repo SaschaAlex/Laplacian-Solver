@@ -2,7 +2,7 @@
 #include <iostream>
 
 
-double * sidel(double * matrix, double * vector, int r, double precision) {
+double * seidel(double * matrix, double * vector, int r, float precision) {
 	double * x = new double[r];
 	double * x_holder = new double[r];
 	bool convergence = true;
@@ -33,7 +33,7 @@ double * sidel(double * matrix, double * vector, int r, double precision) {
 }
 
 
-float * sidel(float * matrix, float * vector, int r, float precision) {
+float * seidel(float * matrix, float * vector, int r, float precision) {
 	float * x = new float[r];
 	float * x_holder = new float[r];
 	bool convergence = true;
