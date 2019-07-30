@@ -1,0 +1,6 @@
+dist: thrusty
+sudo: false
+language: cpp
+script
+  - cmake .
+  - cmake --build . -- -j2
