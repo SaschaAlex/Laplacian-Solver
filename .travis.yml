@@ -3,5 +3,4 @@ sudo: false
 language: cpp
 script:
   - cmake ./laplacian_solver
-  - cd ./laplacian_solver
   - make
