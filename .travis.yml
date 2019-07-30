@@ -1,6 +1,4 @@
-dist: thrusty
-sudo: false
-language: cpp
-script
-  - cmake ./laplacian_solver
-  - cmake --build . -- -j2
+language: ruby
+rvm:
+ - 2.2
+ - jruby
