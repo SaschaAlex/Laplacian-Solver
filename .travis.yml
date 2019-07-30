@@ -1,6 +1,9 @@
 dist: thrusty
 sudo: false
 language: cpp
+compiler:
+  - clang
+  - gcc
 script:
   - cmake ./laplacian_solver
   - make
