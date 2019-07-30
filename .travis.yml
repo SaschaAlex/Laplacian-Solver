@@ -2,5 +2,5 @@ dist: thrusty
 sudo: false
 language: cpp
 script
-  - cmake .
+  - cmake ./laplacian_solver
   - cmake --build . -- -j2
