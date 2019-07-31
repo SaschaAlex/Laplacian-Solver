@@ -29,7 +29,6 @@ SOFTWARE.*/
 
 
 int main() {
-	
 	//initializing variables  
 	int size = 40;  // For a square grid [size * size]
 	float * laplacian = (float*) malloc(size *size *size *size * sizeof(float)); 

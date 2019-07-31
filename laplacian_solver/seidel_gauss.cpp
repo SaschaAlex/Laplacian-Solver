@@ -16,7 +16,6 @@ double * seidel(double * matrix, double * vector, int r, float precision) {
 				if (n != i) {
 					x_holder[n] -= (*(matrix + n * r + i)*x[i]) / (*(matrix + n * r + n));
 				}
-
 			}
 			if (n % r*r == 0)
 				std::cout << "Error: " << fabs(x[0] - x_holder[0]) << std::endl;
@@ -26,8 +25,6 @@ double * seidel(double * matrix, double * vector, int r, float precision) {
 			}
 			x[n] = x_holder[n];
 		}
-
-
 	}
 	return x;
 }
@@ -47,7 +44,6 @@ float * seidel(float * matrix, float * vector, int r, float precision) {
 				if (n != i) {
 					x_holder[n] -= (*(matrix + n * r + i)*x[i]) / (*(matrix + n * r + n));
 				}
-
 			}
 			if (n % r*r == 0)
 				std::cout << "Error: " << fabs(x[0] - x_holder[0]) << std::endl;
@@ -57,8 +53,6 @@ float * seidel(float * matrix, float * vector, int r, float precision) {
 			}
 			x[n] = x_holder[n];
 		}
-
-
 	}
 	return x;
 }

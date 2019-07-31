@@ -29,7 +29,6 @@ float * laplacian1d_matrix(int size, int N) {
 		}
 	}
 	return laplacian;
-
 }
 
 
@@ -61,7 +60,6 @@ float * laplacian2d_matrix(int size, int N) {
 		}
 	}
 	return laplacian;
-
 }
 
 double * laplacian2d_matrix_double(int size, int N) {
@@ -91,5 +89,4 @@ double * laplacian2d_matrix_double(int size, int N) {
 		}
 	}
 	return laplacian;
-
 }
