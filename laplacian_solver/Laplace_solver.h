@@ -5,6 +5,7 @@ float * laplacian2d_matrix(int size, int N);
 float * jacobi(float * matrix, float * vector, int r, float precision);
 float * seidel(float * matrix, float * vector, int r, float precision);
 float * sor(float * matrix, float * vector, int r, float precision);
+float * conjgrad(float * A, float * b, int vector_size, float precision);
 
 //debuging
 
